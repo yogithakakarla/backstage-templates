@@ -86,6 +86,16 @@ spec:
         values:
           name: ${{ parameters.InstanceName}}
 
+    # This step publishes the contents of the working directory to GitHub.
+    - id: publish
+      name: Publish
+      action: publish:github
+      input:
+        allowedHosts: ['github.com']
+        description: This is ${{ parameters.name }}
+        repoUrl: ${{ parameters.repoUrl }}
+      
+
 # # Publish the content of the current working directory to our github directory
 #     - id: publish
 #       name: Publishing Details
@@ -128,3 +138,20 @@ spec:
   #     - title: Open in catalog
   #       icon: catalog
   #       entityRef: ${{ steps['register'].output.entityRef }}
+
+   # Register the new component in the Backstage catalog
+    - id: register
+      name: Register
+      action: catalog:register
+      input:
+        repoContentsUrl: ${{ steps['publish'].output.repoContentsUrl }}
+        catalogInfoPath: '/catalog-info.yaml'  # Where the catalog info is stored
+  # Output links to the user after the template execution
+  output:
+    links:
+      - title: Repository
+        url: ${{ steps['publish'].output.remoteUrl }}
+      - title: Open in catalog
+        icon: catalog
+        entityRef: ${{ steps['register'].output.entityRef }}
+
