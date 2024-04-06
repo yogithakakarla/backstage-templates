@@ -9,28 +9,6 @@ spec:
   owner: guests
   type: service
   parameters:
-    - title: Fill in some steps
-      required:
-        - name
-      properties:
-        name:
-          title: App Name
-          type: string
-          description: Unique name for your app
-          ui:autofocus: true
-          ui:options:
-            rows: 5
-    - title: Choose a Repo location
-      required:
-        - repoUrl
-      properties:
-        repoUrl:
-          title: Repository Location
-          type: string
-          ui:field: RepoUrlPicker
-          ui:options:
-            allowedHosts:
-              - github.com
     - title: EC2 Instance Creation
       required:
          - Environment
@@ -108,15 +86,7 @@ spec:
         values:
           name: ${{ parameters.InstanceName}}
 
-    # This step publishes the contents of the working directory to GitHub.
-    - id: publish
-      name: Publish
-      action: publish:github
-      input:
-        allowedHosts: ['github.com']
-        description: This is ${{ parameters.name }}
-        repoUrl: ${{ parameters.repoUrl }}
-      
+    
 
 # # Publish the content of the current working directory to our github directory
 #     - id: publish
