@@ -9,7 +9,18 @@ spec:
   owner: guests
   type: service
   parameters:
-     - title: Choose a Repo location
+    - title: Fill in some steps
+      required:
+        - name
+      properties:
+        name:
+          title: App Name
+          type: string
+          description: Unique name for your app
+          ui:autofocus: true
+          ui:options:
+            rows: 5
+    - title: Choose a Repo location
       required:
         - repoUrl
       properties:
