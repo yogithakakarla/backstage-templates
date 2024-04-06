@@ -9,6 +9,17 @@ spec:
   owner: guests
   type: service
   parameters:
+     - title: Choose a Repo location
+      required:
+        - repoUrl
+      properties:
+        repoUrl:
+          title: Repository Location
+          type: string
+          ui:field: RepoUrlPicker
+          ui:options:
+            allowedHosts:
+              - github.com
     - title: EC2 Instance Creation
       required:
          - Environment
