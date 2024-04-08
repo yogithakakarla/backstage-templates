@@ -86,18 +86,16 @@ spec:
         values:
           name: ${{ parameters.InstanceName}}
 
-    
+     # This step publishes the contents of the working directory to GitHub.
+    - id: publish
+      name: Publish
+      action: publish:github
+      input:
+        allowedHosts: ['github.com']
+        description: 'This is github repo'
+        repoUrl: 'https://github.com/yogithakakarla/terraform-ec2/actions/'
 
-# # Publish the content of the current working directory to our github directory
-#     - id: publish
-#       name: Publishing Details
-#       action: publish:github
-#       input:
-#         allowedHosts: ['github.com']
-#         description: This repo is to create an ec2 instance ${{ parameters.InstanceName }} using backstage.
-#         repoUrl: ${{ parameters.repoUrl }}
-#         repoVisibility: public # or 'internal' or 'private'
-#         # defaultBranch: master
+
 
 # Triggering CI-CD to create resource in our case github action. 
     - id: github-action
@@ -114,6 +112,13 @@ spec:
           action: ${{ parameters.action }}
           environment: ${{ parameters.Environment }}
           instanceCount: ${{ parameters.InstanceCount }}
+
+  output:
+    links:
+      - title: Repository
+        url: ${{ steps['publish'].output.remoteUrl }}
+     
+          
 # # Registering new component in the catalog of backstage.
 #     - id: register
 #       name: Registering the new Component 
