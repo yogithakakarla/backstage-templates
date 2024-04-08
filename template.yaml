@@ -93,7 +93,7 @@ spec:
       input:
         allowedHosts: ['github.com']
         description: 'This is github repo'
-        repoUrl: 'https://github.com/yogithakakarla/terraform-ec2/actions/'
+        repoUrl: 'github.com?repo=terraform-ec2&owner=yogithakakarla'
 
 
 
