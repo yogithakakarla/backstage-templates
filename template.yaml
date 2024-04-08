@@ -109,7 +109,7 @@ spec:
   output:
     links:
       - title: Repository
-        url: 'github.com?repo=terraform-ec2&owner=yogithakakarla'
+        url: 'https://github.com/yogithakakarla/terraform-ec2/actions'
      
           
 # # Registering new component in the catalog of backstage.
