@@ -86,14 +86,7 @@ spec:
         values:
           name: ${{ parameters.InstanceName}}
 
-     # This step publishes the contents of the working directory to GitHub.
-    - id: publish
-      name: Publish
-      action: publish:github
-      input:
-        allowedHosts: ['github.com']
-        description: 'This is github repo'
-        repoUrl: 'github.com?repo=terraform-ec2&owner=yogithakakarla'
+   
 
 
 
@@ -116,7 +109,7 @@ spec:
   output:
     links:
       - title: Repository
-        url: ${{ steps['publish'].output.remoteUrl }}
+        url: 'github.com?repo=terraform-ec2&owner=yogithakakarla'
      
           
 # # Registering new component in the catalog of backstage.
